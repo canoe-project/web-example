@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        ul::-webkit-scrollbar {
+          display: none;
+        }
+        ul{
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            overflow: scroll;
+            white-space: nowrap;
+            width: 100px;
+            height: 100px;
+        }
+        div {
+            flex: none;
+            width: 100px;
+            height: 100px;
+        }
+        
+    </style>
+</head>
+<body>
+    <ul>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </ul>
+    <button>click</button>
+    <script>
+        const colorList = ["#264653","#2a9d8f","#e9c46a","#f4a261","#e76f51"]
+        const listElement = $('div').get();
+        listElement.forEach((list)=>{
+            $(list).css({"background-color":`${colorList[Math.floor(Math.random() * colorList.length)]}`})
+        })
+        $('button').on("click",()=>{
+            $('ul').animate({
+                scrollLeft : $('ul').scrollLeft() + 100
+            },800)
+        })
+    </script>
+</body>
+</html>
