@@ -1,0 +1,33 @@
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+</style>
+
+<b>Mousemove Event</b>
+<br>Nothing <input type='text' id='output1' disabled>
+<br>Throttled <input type='text' id='output2' disabled>
+<br>Debounced <input type='text' id='output3' disabled>
+<div></div>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js'></script>
+<script>
+$(window).mousemove( function(e) {
+	$('#output1').val( e.clientX + ', ' + e.clientY );
+})
+
+// $("div").on("click",
+//     $.throttle( 500, function(e) {
+// 	$('#output2').val( e.clientX + ', ' + e.clientY );
+// })
+// )
+
+$('div').mousemove( $.throttle( 500, function(e) {
+	$('#output2').val( e.clientX + ', ' + e.clientY );
+}))
+$(window).mousemove( $.debounce( 500, function(e) {
+	$('#output3').val( e.clientX + ', ' + e.clientY );
+}))
+</script>
